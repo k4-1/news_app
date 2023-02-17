@@ -124,8 +124,8 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
 
   void increment() => clickCount.value++;
   void click() {
-    bool fifthArticle = clickCount.value % 3 == 0;
-    bool tenthArticle = clickCount.value % 5 == 0;
+    bool fifthArticle = clickCount.value % 5 == 0;
+    bool tenthArticle = clickCount.value % 10 == 0;
     if (fifthArticle) {
       fiveArticle.value = fifthArticle;
     }
