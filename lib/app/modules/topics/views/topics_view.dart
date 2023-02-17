@@ -43,7 +43,6 @@ class TopicsView extends GetView<TopicsController> {
                           child: CheckBox(
                         controller: controller,
                       )),
-                      // Expanded(child: CheckBox(controller: controller)),
                     ],
                   ),
                 ],

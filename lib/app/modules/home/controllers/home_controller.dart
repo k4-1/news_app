@@ -9,7 +9,6 @@ import 'package:technical_test/app/model/news_model.dart';
 import 'package:technical_test/app/modules/home/widgets/news_widgets/news_list.dart';
 
 class HomeController extends GetxController with GetTickerProviderStateMixin {
-  //TODO: Implement HomeController
   final navBarIndex = 0.obs;
   late ScrollController scroll;
   late TabController tabCtrl;
@@ -19,9 +18,12 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   var fetchNews = <News>[].obs;
   var fetchLatest = <News>[].obs;
   var fetchTrending = <News>[].obs;
-  var publisherName = ''.obs;
-  var publisherImage = ''.obs;
   var newsLink = ''.obs;
+  // var topic = ''.obs;
+  var publisherName = ''.obs;
+  // var updated = ''.obs;
+  // var imageUrl = ''.obs;
+  var publisherImage = ''.obs;
   var newsIndex = 0.obs;
   var clickCount = 0.obs;
   var fiveArticle = false.obs;
@@ -103,19 +105,11 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     } else if ((time >= 140) && (time <= 1759)) {
       title.value = kGoodEvening;
       subTitle.value = kGoodEveningSubtitle;
-    } else if (((time >= 180) && (time <= 240)) ||
+    } else if (((time >= 180) && (time <= 2359)) ||
         ((time >= 00) && (time <= 559))) {
       title.value = kGoodNight;
       subTitle.value = kGoodNightSubtitle;
     }
-  }
-
-  void cardPublisherName(String name) {
-    publisherName.value = name;
-  }
-
-  void cardPublisherImage(String image) {
-    publisherImage.value = image;
   }
 
   void cardLink(String link) {
@@ -162,20 +156,6 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     return tabX.value = tabs;
   }
 
-  updateTrendingTab() {
-    var readTrend = getStorage.read('isTrending');
-    List<Tab> tabs = [const Tab(text: 'Latest')];
-
-    if (readTrend == 'off' || readTrend == null) {
-      tabs.remove(const Tab(text: 'Trending'));
-    }
-    if (readTrend == 'on') {
-      tabs.add(const Tab(text: 'Trending'));
-    }
-
-    return tabX.value = tabs;
-  }
-
   updateNewsTab() {
     var readTrend = getStorage.read('isTrending');
     var readNews = getStorage.read('isNews');
@@ -190,5 +170,42 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     }
     tabs = [const Tab(text: 'Latest')];
     return tabX.value = tabs;
+  }
+
+  void cardPublisherName(String name) {
+    // publisherName.value = name;
+  }
+
+  void cardPublisherImage(String image) {
+    publisherImage.value = image;
+  }
+
+  lastRead(
+    String newsTopic,
+    String newsUpdated,
+    String newsImageUrl,
+    String newsPublisherName,
+    String newsPublisherImage,
+  ) {
+    if (newsTopic != '') {
+      // topic.value = newsTopic;
+      getStorage.write('newsTopic', newsTopic);
+    }
+    if (newsUpdated != '') {
+      // updated.value = newsUpdated;
+      getStorage.write('newsUpdated', newsUpdated);
+    }
+    if (newsImageUrl != null) {
+      // imageUrl.value = newsImageUrl;
+      getStorage.write('newsImageUrl', newsImageUrl);
+    }
+    if (newsPublisherName != null) {
+      publisherName.value = newsPublisherName;
+      getStorage.write('newsPublisherName', newsPublisherName);
+    }
+    if (newsPublisherImage != null) {
+      publisherImage.value = newsPublisherImage;
+      getStorage.write('newsPublisherImage', newsPublisherImage);
+    }
   }
 }

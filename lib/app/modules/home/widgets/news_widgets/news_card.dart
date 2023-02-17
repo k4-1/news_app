@@ -36,6 +36,8 @@ class NewsCard extends StatelessWidget {
         controller.cardLink(link);
         controller.increment();
         controller.click();
+        controller.lastRead(
+            topic, updated, imageUrl, publisherName, publisherImage);
         Get.toNamed(Routes.WEB);
       },
       child: Card(

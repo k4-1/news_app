@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:technical_test/app/core/constants/colors.dart';
 import 'package:technical_test/app/modules/home/controllers/home_controller.dart';
 
 class TopicsController extends GetxController {
@@ -47,10 +48,24 @@ class TopicsController extends GetxController {
     if (read == 'off' || read == null) {
       getStorage.write('isNews', 'on');
       isNews.value = 'on';
+      Get.snackbar(
+        "Friendly Notice",
+        "You are now following News",
+        colorText: kWhiteColor,
+        backgroundColor: kDarkColor,
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
     if (read == 'on') {
       getStorage.write('isNews', 'off');
       isNews.value = 'off';
+      Get.snackbar(
+        "Friendly Notice",
+        "You are now unfollowing News",
+        colorText: kWhiteColor,
+        backgroundColor: kDarkColor,
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 }
