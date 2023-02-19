@@ -36,10 +36,24 @@ class TopicsController extends GetxController {
     if (read == 'off' || read == null) {
       getStorage.write('isTrending', 'on');
       isTrending.value = 'on';
+      Get.snackbar(
+        "Friendly Notice",
+        "You are now following Trending",
+        colorText: kWhiteColor,
+        backgroundColor: kDarkColor,
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
     if (read == 'on') {
       getStorage.write('isTrending', 'off');
       isTrending.value = 'off';
+      Get.snackbar(
+        "Friendly Notice",
+        "You are now unfollowing Trending",
+        colorText: kWhiteColor,
+        backgroundColor: kDarkColor,
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 
