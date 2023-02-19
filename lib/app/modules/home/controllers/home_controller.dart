@@ -91,22 +91,22 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   }
 
   void greetingLogic() {
-    var hour = DateTime.now().hour.toString();
-    var minute = DateTime.now().minute.toString();
+    var hour = DateTime.now().hour.toString().padLeft(2, "0");
+    var minute = DateTime.now().minute.toString().padLeft(2, "0");
     var timeString = hour + minute;
     final time = int.parse(timeString);
 
-    if ((time >= 60) && (time <= 1159)) {
+    if ((time >= 0600) && (time <= 1159)) {
       title.value = kGoodMorning;
       subTitle.value = kGoodMorningSubtitle;
-    } else if ((time >= 120) && (time <= 1359)) {
+    } else if ((time >= 1200) && (time <= 1359)) {
       title.value = kGoodAfternoon;
       subTitle.value = kGoodAfternoonSubtitle;
-    } else if ((time >= 140) && (time <= 1759)) {
+    } else if ((time >= 1400) && (time <= 1759)) {
       title.value = kGoodEvening;
       subTitle.value = kGoodEveningSubtitle;
-    } else if (((time >= 180) && (time <= 2359)) ||
-        ((time >= 00) && (time <= 559))) {
+    } else if (((time >= 1800) && (time <= 2359)) ||
+        ((time >= 0000) && (time <= 0559))) {
       title.value = kGoodNight;
       subTitle.value = kGoodNightSubtitle;
     }
